@@ -24,7 +24,7 @@ interface TokenCache {
   clearToken?: (key: string) => void;
 }
 
-const tokenCache = {
+const tokenCache: TokenCache = {
   async getToken(key: string) {
     try {
       const item = await SecureStore.getItemAsync(key);
@@ -120,7 +120,10 @@ function RootLayoutNav() {
           ),
         }}
       />
-      <Stack.Screen name="listing/[id]" options={{ headerTitle: "" }} />
+      <Stack.Screen
+        name="listing/[id]"
+        options={{ headerTitle: "", headerTransparent: true }}
+      />
       <Stack.Screen
         name="(modals)/booking"
         options={{

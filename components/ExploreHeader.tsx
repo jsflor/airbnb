@@ -72,8 +72,15 @@ export const ExploreHeader = ({ onCategoryChanged }: Props) => {
               <View style={styles.searchBtn}>
                 <Ionicons name="search" size={24} />
                 <View>
-                  <Text style={{ fontFamily: "mon-sb" }}>Where to?</Text>
-                  <Text style={{ color: Colors.grey, fontFamily: "mon" }}>
+                  <Text style={{ fontFamily: "Montserrat-SemiBold" }}>
+                    Where to?
+                  </Text>
+                  <Text
+                    style={{
+                      color: Colors.grey,
+                      fontFamily: "Montserrat-Regular",
+                    }}
+                  >
                     Anywhere · Any week
                   </Text>
                 </View>
@@ -176,12 +183,12 @@ const styles = StyleSheet.create({
   },
   categoryText: {
     fontSize: 14,
-    fontFamily: "mon-sb",
+    fontFamily: "Montserrat-SemiBold",
     color: Colors.grey,
   },
   categoryTextActive: {
     fontSize: 14,
-    fontFamily: "mon-sb",
+    fontFamily: "Montserrat-SemiBold",
     color: "#000",
   },
   categoriesBtn: {

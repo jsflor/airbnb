@@ -14,6 +14,7 @@ import {
   BottomSheetFlatList,
   BottomSheetFlatListMethods,
 } from "@gorhom/bottom-sheet";
+import { Listing } from "@/interfaces/listing";
 
 interface Props {
   listings: any[];
@@ -46,7 +47,7 @@ export const Listings = ({ listings: items, refresh, category }: Props) => {
   }, [category]);
 
   // Render one listing row for the FlatList
-  const renderRow: ListRenderItem<any> = ({ item }) => (
+  const renderRow: ListRenderItem<Listing> = ({ item }) => (
     <Link href={`/listing/${item.id}`} asChild>
       <TouchableOpacity>
         <Animated.View
@@ -55,7 +56,7 @@ export const Listings = ({ listings: items, refresh, category }: Props) => {
           exiting={FadeOutLeft}
         >
           <Animated.Image
-            source={{ uri: item.medium_url }}
+            source={{ uri: item.medium_url! }}
             style={styles.image}
           />
           <TouchableOpacity
@@ -66,20 +67,24 @@ export const Listings = ({ listings: items, refresh, category }: Props) => {
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <Text style={{ fontSize: 16, fontFamily: "mon-sb" }}>
+            <Text style={{ fontSize: 16, fontFamily: "Montserrat-SemiBold" }}>
               {item.name}
             </Text>
             <View style={{ flexDirection: "row", gap: 4 }}>
               <Ionicons name="star" size={16} />
-              <Text style={{ fontFamily: "mon-sb" }}>
-                {item.review_scores_rating / 20}
+              <Text style={{ fontFamily: "Montserrat-SemiBold" }}>
+                {item.review_scores_rating! / 20}
               </Text>
             </View>
           </View>
-          <Text style={{ fontFamily: "mon" }}>{item.room_type}</Text>
+          <Text style={{ fontFamily: "Montserrat-Regular" }}>
+            {item.room_type}
+          </Text>
           <View style={{ flexDirection: "row", gap: 4 }}>
-            <Text style={{ fontFamily: "mon-sb" }}>€ {item.price}</Text>
-            <Text style={{ fontFamily: "mon" }}>night</Text>
+            <Text style={{ fontFamily: "Montserrat-SemiBold" }}>
+              € {item.price}
+            </Text>
+            <Text style={{ fontFamily: "Montserrat-Regular" }}>night</Text>
           </View>
         </Animated.View>
       </TouchableOpacity>
@@ -113,7 +118,7 @@ const styles = StyleSheet.create({
   },
   info: {
     textAlign: "center",
-    fontFamily: "mon-sb",
+    fontFamily: "Montserrat-SemiBold",
     fontSize: 16,
     marginTop: 4,
   },
