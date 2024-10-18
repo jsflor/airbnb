@@ -7,6 +7,9 @@ import { TouchableOpacity } from "react-native";
 import { ClerkProvider, ClerkLoaded, useAuth } from "@clerk/clerk-expo";
 import * as SecureStore from "expo-secure-store";
 import "react-native-reanimated";
+import { ModalHeaderText } from "@/components/ModalHeaderText";
+import { Colors } from "react-native/Libraries/NewAppScreen";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -86,7 +89,9 @@ export default function RootLayout() {
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <ClerkLoaded>
-        <RootLayoutNav />
+        <GestureHandlerRootView>
+          <RootLayoutNav />
+        </GestureHandlerRootView>
       </ClerkLoaded>
     </ClerkProvider>
   );
@@ -129,9 +134,20 @@ function RootLayoutNav() {
         options={{
           presentation: "transparentModal",
           animation: "fade",
+          headerTransparent: true,
+          headerTitle: (props) => <ModalHeaderText />,
           headerLeft: () => (
-            <TouchableOpacity onPress={() => router.back()}>
-              <Ionicons name="close-outline" size={28} />
+            <TouchableOpacity
+              onPress={() => router.back()}
+              style={{
+                backgroundColor: "#fff",
+                borderColor: Colors.grey,
+                borderRadius: 20,
+                borderWidth: 1,
+                padding: 4,
+              }}
+            >
+              <Ionicons name="close-outline" size={22} />
             </TouchableOpacity>
           ),
         }}
